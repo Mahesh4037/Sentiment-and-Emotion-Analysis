@@ -144,7 +144,7 @@ If you want to train your own model:
 1. **Clone the Repo**
 
 ```bash
-git clone https://github.com/Mahesh4037/Sentiment-and-Emotion-Analysis
+git clone https://github.com/Mahesh4037/Sentiment-and-Emotion-Analysis.git
 cd Sentiment-and-Emotion-Analysis
 ```
 
