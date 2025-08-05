@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment and Emotion Analysis with Translation</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="https://cdn.plot.ly/plotly-2.16.3.min.js"></script>
+    <script src="static/scripts.js" defer></script>
+    
+</head>
+<body>
+    <div class="container">
+        <h1 style="font-family: Montserrat;">Sentiment and Emotion Analysis with Translation</h1>
+        <div class="input-section">
+            <div class="textarea-container">
+                <textarea class="textarea-feedback" id="feedback" rows="10" cols="50" placeholder="Type your feedback here..." style="font-family: lato;"></textarea>
+                
+                <div class="button-container">
+                    <button id="copy-textarea" title="Copy Feedback">
+                        <img src="static/copy-icon.png" alt="Copy">
+                    </button>
+                    <button id="start-recording" title="Mic Input"><img src="static/mic-icon.png" alt="Mic">
+                    </button>
+                    <button id="speaker-textarea" title="Read Aloud">
+                        <img src="static/speaker-icon.png" alt="Speaker">
+                    </button>
+                    
+                </div>
+            </div>
+
+            <!-- Added container for translated feedback -->
+            <div class="textarea-container">
+                <textarea class="translated-feedback-container" id="translated-feedback" rows="10" cols="50" style="font-family: lato;" placeholder="Translated feedback" readonly></textarea>
+              
+                <div class="button-container">
+                    <button id="copy-feedback" title="Copy Feedback">
+                        <img src="static/copy-icon.png" alt="Copy">
+                    </button>
+                    <button id="speaker-feedback" title="Read Aloud">
+                        <img src="static/speaker-icon.png" alt="Speaker">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="dropdown-container">
+            <button class="dropdown-button">Translate to: English</button>
+            <div class="dropdown-content">
+                <input type="text" class="search-bar" placeholder="Search languages...">
+                <div class="language-grid">
+                    <a href="#" data-lang="en" class="default-language" id="default-language">English</a> <!-- Set English as default -->
+                    <a href="#" data-lang="af">Afrikaans</a>
+                    <a href="#" data-lang="sq">Albanian</a>
+                    <a href="#" data-lang="am">Amharic</a>
+                    <a href="#" data-lang="ar">Arabic</a>
+                    <a href="#" data-lang="hy">Armenian</a>
+                    <a href="#" data-lang="az">Azerbaijani</a>
+                    <a href="#" data-lang="eu">Basque</a>
+                    <a href="#" data-lang="be">Belarusian</a>
+                    <a href="#" data-lang="bn">Bengali</a>
+                    <a href="#" data-lang="bs">Bosnian</a>
+                    <a href="#" data-lang="bg">Bulgarian</a>
+                    <a href="#" data-lang="ca">Catalan</a>
+                    <a href="#" data-lang="ceb">Cebuano</a>
+                    <a href="#" data-lang="ny">Chichewa</a>
+                    <a href="#" data-lang="zh-cn">Chinese (Simplified)</a>
+                    <a href="#" data-lang="zh-tw">Chinese (Traditional)</a>
+                    <a href="#" data-lang="co">Corsican</a>
+                    <a href="#" data-lang="hr">Croatian</a>
+                    <a href="#" data-lang="cs">Czech</a>
+                    <a href="#" data-lang="da">Danish</a>
+                    <a href="#" data-lang="nl">Dutch</a>
+                    <a href="#" data-lang="eo">Esperanto</a>
+                    <a href="#" data-lang="et">Estonian</a>
+                    <a href="#" data-lang="tl">Filipino</a>
+                    <a href="#" data-lang="fi">Finnish</a>
+                    <a href="#" data-lang="fr">French</a>
+                    <a href="#" data-lang="fy">Frisian</a>
+                    <a href="#" data-lang="gl">Galician</a>
+                    <a href="#" data-lang="ka">Georgian</a>
+                    <a href="#" data-lang="de">German</a>
+                    <a href="#" data-lang="el">Greek</a>
+                    <a href="#" data-lang="gu">Gujarati</a>
+                    <a href="#" data-lang="ht">Haitian Creole</a>
+                    <a href="#" data-lang="ha">Hausa</a>
+                    <a href="#" data-lang="haw">Hawaiian</a>
+                    <a href="#" data-lang="iw">Hebrew</a>
+                    <a href="#" data-lang="hi">Hindi</a>
+                    <a href="#" data-lang="hmn">Hmong</a>
+                    <a href="#" data-lang="hu">Hungarian</a>
+                    <a href="#" data-lang="is">Icelandic</a>
+                    <a href="#" data-lang="ig">Igbo</a>
+                    <a href="#" data-lang="id">Indonesian</a>
+                    <a href="#" data-lang="ga">Irish</a>
+                    <a href="#" data-lang="it">Italian</a>
+                    <a href="#" data-lang="ja">Japanese</a>
+                    <a href="#" data-lang="jw">Javanese</a>
+                    <a href="#" data-lang="kn">Kannada</a>
+                    <a href="#" data-lang="kk">Kazakh</a>
+                    <a href="#" data-lang="km">Khmer</a>
+                    <a href="#" data-lang="rw">Kinyarwanda</a>
+                    <a href="#" data-lang="ko">Korean</a>
+                    <a href="#" data-lang="ku">Kurdish (Kurmanji)</a>
+                    <a href="#" data-lang="ky">Kyrgyz</a>
+                    <a href="#" data-lang="lo">Lao</a>
+                    <a href="#" data-lang="la">Latin</a>
+                    <a href="#" data-lang="lv">Latvian</a>
+                    <a href="#" data-lang="lt">Lithuanian</a>
+                    <a href="#" data-lang="lb">Luxembourgish</a>
+                    <a href="#" data-lang="mk">Macedonian</a>
+                    <a href="#" data-lang="mg">Malagasy</a>
+                    <a href="#" data-lang="ms">Malay</a>
+                    <a href="#" data-lang="ml">Malayalam</a>
+                    <a href="#" data-lang="mt">Maltese</a>
+                    <a href="#" data-lang="mi">Maori</a>
+                    <a href="#" data-lang="mr">Marathi</a>
+                    <a href="#" data-lang="mn">Mongolian</a>
+                    <a href="#" data-lang="my">Myanmar (Burmese)</a>
+                    <a href="#" data-lang="ne">Nepali</a>
+                    <a href="#" data-lang="no">Norwegian</a>
+                    <a href="#" data-lang="or">Odia (Oriya)</a>
+                    <a href="#" data-lang="ps">Pashto</a>
+                    <a href="#" data-lang="fa">Persian</a>
+                    <a href="#" data-lang="pl">Polish</a>
+                    <a href="#" data-lang="pt">Portuguese</a>
+                    <a href="#" data-lang="pa">Punjabi</a>
+                    <a href="#" data-lang="ro">Romanian</a>
+                    <a href="#" data-lang="ru">Russian</a>
+                    <a href="#" data-lang="sm">Samoan</a>
+                    <a href="#" data-lang="gd">Scots Gaelic</a>
+                    <a href="#" data-lang="sr">Serbian</a>
+                    <a href="#" data-lang="st">Sesotho</a>
+                    <a href="#" data-lang="sn">Shona</a>
+                    <a href="#" data-lang="sd">Sindhi</a>
+                    <a href="#" data-lang="si">Sinhala</a>
+                    <a href="#" data-lang="sk">Slovak</a>
+                    <a href="#" data-lang="sl">Slovenian</a>
+                    <a href="#" data-lang="so">Somali</a>
+                    <a href="#" data-lang="es">Spanish</a>
+                    <a href="#" data-lang="su">Sundanese</a>
+                    <a href="#" data-lang="sw">Swahili</a>
+                    <a href="#" data-lang="sv">Swedish</a>
+                    <a href="#" data-lang="tg">Tajik</a>
+                    <a href="#" data-lang="ta">Tamil</a>
+                    <a href="#" data-lang="tt">Tatar</a>
+                    <a href="#" data-lang="te">Telugu</a>
+                    <a href="#" data-lang="th">Thai</a>
+                    <a href="#" data-lang="tr">Turkish</a>
+                    <a href="#" data-lang="tk">Turkmen</a>
+                    <a href="#" data-lang="uk">Ukrainian</a>
+                    <a href="#" data-lang="ur">Urdu</a>
+                    <a href="#" data-lang="ug">Uyghur</a>
+                    <a href="#" data-lang="uz">Uzbek</a>
+                    <a href="#" data-lang="vi">Vietnamese</a>
+                    <a href="#" data-lang="cy">Welsh</a>
+                    <a href="#" data-lang="xh">Xhosa</a>
+                    <a href="#" data-lang="yi">Yiddish</a>
+                    <a href="#" data-lang="yo">Yoruba</a>
+                    <a href="#" data-lang="zu">Zulu</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="button-section">
+            <button id="submit-feedback" class="buttonx" style="font-family: poppins;">Submit Feedback</button>
+            
+        </div>
+
+        <div class="graphs-container" id="result-container" style="display:none;">
+            <div class="result-words">
+                <!-- Result Section -->
+                <div class="result-section">
+                    <h2>Result</h2>
+                    <p id="result"></p>
+                </div>
+                
+                <!-- Dominant Words Section -->
+                <div class="dominant-words-section">
+                    <h2>Dominant Words</h2>
+                    <p id="dominant-words"></p>
+                </div>
+            </div>
+        
+            <!-- Graphs -->
+            <div class="graphs">
+                <div id="probability-chart" class="chart"></div>
+                <div id="emotion-pie-chart" class="chart"></div>
+            </div>
+        </div>
+        
+
+        </div>
+
+    </div>
+
+    <div class="graphs-container" id="graphs-container" style="display:none;">
+</div>
+    
+</body>
+</html>

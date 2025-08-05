@@ -1,0 +1,372 @@
+/* General styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0A0908, #22333B);
+    color: #EAE0D5;
+    margin: 0;
+    padding: 0;
+    min-height: 93.7vh;
+    transition: height 0.5s ease;
+}
+
+
+
+.container {
+    max-width: 1200px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px 30px 30px 30px ;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    text-align: center;
+    color: #22333B;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.input-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.textarea-container {
+    width: 45.25%;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    padding: 7px 7px 15px 7px;
+    border: solid;
+    border-radius: 8px;
+    border-color: #0A0908;
+    font-size: 1.2rem;
+    resize: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    color: #5E5035;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), 
+}
+textarea::-webkit-input-placeholder {
+    font-style: italic;
+    color: #5E5035;
+}
+textarea:focus {
+    border-color: #0A0908;
+    outline: none;
+    box-shadow: 0 0 12px #22333bc8;
+}
+
+.button-container {
+    width: 94%;
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 5.5px;
+    left: 2px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255);
+    background-color: rgba(255, 255, 255);
+    height: 34px;
+}
+
+.button-container button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.button-container img {
+    width: 24px;
+    height: 24px;
+}
+
+.translated-feedback-container {
+ width: 95%;
+    height: 100%;
+    position: relative;
+}
+
+.output-section {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    border-left: 5px solid  #22333B;
+    box-shadow: 0 0 12px rgba(22, 45, 47, 0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.output-section:hover {
+    transform: translateY(-5px);
+}
+
+#result {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color:  #22333bc8;
+}
+
+#translated-feedback {
+    font-size: 1.2rem;
+    color: #C6AC85;
+    margin-block-start: 0%;
+}
+
+.buttonx {
+    width: 50%;
+    background: linear-gradient(90deg, #5E5035, #C6AC85);
+    color: #fff;
+    padding: 15px;
+    margin: 15px;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+    position: relative;
+    margin-left: 24%;
+}
+
+.buttonx:hover {
+    background: linear-gradient(90deg, #5E5035, #C6AC85);
+    transform: scale(1.05);
+}
+
+/* Scrollbars */
+textarea::-webkit-scrollbar {
+    width: 15px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #0A0908, #22333B);
+    border-radius: 6.5px;
+}
+
+.translated-feedback-container::-webkit-scrollbar {
+    width: 15px;
+}
+
+.translated-feedback-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg,  #0A0908, #22333B);
+    border-radius: 6.5px;
+}
+
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+
+}
+
+.dropdown-button {
+    background-color: #C6AC85;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 2; /* Ensure button is above the dropdown */
+}
+
+.dropdown-button:hover {
+    background-color: #5E5035;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    bottom: 100%; /* Position the dropdown above the button */
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1;
+    width: 550px; /* Increased width for 3 columns */
+    max-height: 0;
+    overflow-x: hidden;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: bottom center; /* Change transform origin to bottom */
+    transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+}
+
+.dropdown-container.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    max-height: 400px; /* Increased height for all languages */
+    transform: scaleY(1); /* Scale animation for smooth opening */
+}
+
+.dropdown-container.closing .dropdown-content {
+    opacity: 0;
+    max-height: 0;
+    transform: scaleY(0); /* Scale back to original when closing */
+    transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+.search-bar {
+    width: 93%;
+    padding: 10px;
+    margin: 10px 20px 10px 10px;
+    border-radius: 8px 8px 8px 8px;
+    border: 1px solid #ddd;
+}
+
+.language-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3-column grid */
+    padding: 10px;
+}
+
+.dropdown-content a {
+    color: #22333B;
+    padding: 12px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    color: l #5E5035; 
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+
+.dropdown-button.active {
+    background-color: #22333bc8; /* Change button color on language selection */
+}
+
+.textarea-feedback{
+    width: 95%;
+}
+
+
+.dropdown-content::-webkit-scrollbar {
+    width: 15px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #0A0908, #22333B);
+    border-radius: 6.5px;
+
+}
+
+.graphs-container {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display:none;
+    display: flex ;
+}
+
+.graph-title {
+    text-align: center;
+    color: #22333B;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.chart {
+    margin: 20px auto;
+    width: 50%;
+    height: 400px;
+
+}
+
+.graphs {
+display: flex;
+}
+
+/* Shared Styles for Result and Dominant Words */
+.result-section{
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(22, 45, 47, 0.2);
+    margin-top: 30px;
+    transition: transform 0.2s ease-in-out;
+    font-size: 1.2rem;
+    color: #22333B;
+    width: 50%; /* Set a consistent width */
+}
+
+.result-words {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.result-section h2, .dominant-words-section h2 {
+    font-size: 1.8rem;
+    color:  #5E5035;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.result-section p, .dominant-words-section p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #264d54;
+}
+
+.result-section:hover, .dominant-words-section:hover {
+    transform: translateY(-5px);
+}
+
+.graphs-container {
+    display: none; /* Ensure this is hidden initially, can be changed with JS */
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 48;
+}
+
+.graphs {
+    display: flex;
+    justify-content: space-between;
+}
+
+.chart {
+    margin: 20px auto;
+    width: 48%; /* Set a consistent width for the charts */
+    height: 400px;
+}
+
+
+.dominant-words-section {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(22, 45, 47, 0.2);
+    margin-top: 30px;
+    transition: transform 0.2s ease-in-out;
+    font-size: 1.2rem;
+    color: #22333B;
+    width: 50%; /* Set a consistent width */
+    margin-left: 50px;
+}
